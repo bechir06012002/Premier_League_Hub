@@ -1,0 +1,28 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Environment variables
+.env
+
+# Internal project docs, not for the public repo
+CLAUDE.md
+CLAUDE2.md
+Check_List.md
+Check_List_2.md
+
+# Session working notes: per-step write-ups and deployment planning
+step_*.md
+stage_*.md
+Deployment_Plan.md
+
+# Personal presentation material
+LinkedIn_Video_Skript_DE.pdf
+backend.pdf

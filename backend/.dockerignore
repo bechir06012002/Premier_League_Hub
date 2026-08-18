@@ -1,0 +1,20 @@
+# Python-generated files
+# Docker's dockerignore matching differs from .gitignore: a bare pattern like
+# `.env` only matches at the root of the build context, not at any depth, so
+# everything meant to be excluded everywhere in the tree needs a `**/` prefix.
+**/__pycache__/
+**/*.py[oc]
+build/
+dist/
+wheels/
+**/*.egg-info
+
+# Virtual environments
+**/.venv
+
+# Environment variables
+**/.env
+
+# Version control
+.git
+.gitignore

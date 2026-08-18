@@ -1,0 +1,60 @@
+# Supabase is the database now - both services below talk to it directly and
+# never to each other, so they deploy independently. DATABASE_URL and the other
+# secrets are entered by hand in the Render dashboard (`sync: false` means
+# Render expects a manual value rather than creating one).
+
+services:
+  # ---------------------------------------------------------------- backend --
+  - type: cron
+    name: premier-league-hub-cron
+    env: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    dockerCommand: python daily_runner.py
+    schedule: "58 14 * * *"
+    # Without this, a CSS tweak in frontend/ rebuilds this image too - and it
+    # pulls docling + CPU torch, so that's an expensive no-op.
+    buildFilter:
+      paths:
+        - backend/**
+        - render.yaml
+    envVars:
+      # Supabase Postgres connection string. Use the *pooler* host
+      # (aws-1-eu-west-3.pooler.supabase.com) - the direct host is IPv6-only
+      # and won't resolve from every network.
+      - key: DATABASE_URL
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: MY_EMAIL
+        sync: false
+      - key: APP_PASSWORD
+        sync: false
+
+  # --------------------------------------------------------------- frontend --
+  - type: web
+    name: premier-league-hub-web
+    runtime: static
+    rootDir: frontend
+    buildCommand: npm ci && npm run build
+    staticPublishPath: ./dist
+    buildFilter:
+      paths:
+        - frontend/**
+        - render.yaml
+    # React Router handles routing client-side, so a hard refresh on /login has
+    # no file to serve and would 404. This hands every path to index.html and
+    # lets the app resolve it. Render has no _redirects support - routes is the
+    # only declarative option.
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      # VITE_* values are inlined into the bundle at *build* time, not read at
+      # runtime - changing one needs a rebuild, not a restart. The anon key is
+      # designed to be public; RLS is what actually enforces access.
+      - key: VITE_SUPABASE_URL
+        sync: false
+      - key: VITE_SUPABASE_ANON_KEY
+        sync: false

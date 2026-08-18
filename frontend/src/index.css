@@ -1,0 +1,138 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "@fontsource-variable/geist";
+@import "@fontsource-variable/dosis";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  color-scheme: dark;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Premier League brand: deep purple + vivid green, dark-mode-first */
+  --background: #16041c;
+  --foreground: #f5f3f7;
+  --card: #2a0a34;
+  --card-foreground: #f5f3f7;
+  --popover: #2a0a34;
+  --popover-foreground: #f5f3f7;
+  --primary: #00ff85;
+  --primary-foreground: #06110b;
+  --secondary: #3d1049;
+  --secondary-foreground: #f5f3f7;
+  --muted: #33093f;
+  --muted-foreground: #c3a3d0;
+  --accent: #e90599;
+  --accent-foreground: #ffffff;
+  --destructive: #ff5470;
+  --border: rgba(255, 255, 255, 0.12);
+  --input: rgba(255, 255, 255, 0.14);
+  --ring: #00ff85;
+  --chart-1: #00ff85;
+  --chart-2: #e90599;
+  --chart-3: #37003c;
+  --chart-4: #04f5ff;
+  --chart-5: #c3a3d0;
+  --radius: 0.9rem;
+  --sidebar: #1f0728;
+  --sidebar-foreground: #f5f3f7;
+  --sidebar-primary: #00ff85;
+  --sidebar-primary-foreground: #06110b;
+  --sidebar-accent: #3d1049;
+  --sidebar-accent-foreground: #f5f3f7;
+  --sidebar-border: rgba(255, 255, 255, 0.12);
+  --sidebar-ring: #00ff85;
+
+  /* Extra brand tokens (not part of shadcn's default set) for gradients/glow */
+  --brand-purple: #37003c;
+  --brand-purple-deep: #16041c;
+  --brand-green: #00ff85;
+  --brand-magenta: #e90599;
+  --brand-gradient: radial-gradient(
+      circle at 15% 20%,
+      rgba(0, 255, 133, 0.16) 0%,
+      transparent 45%
+    ),
+    radial-gradient(circle at 85% 80%, rgba(233, 5, 153, 0.18) 0%, transparent 50%),
+    linear-gradient(160deg, #1f0728 0%, #16041c 55%, #0d0212 100%);
+}
+
+body {
+  margin: 0;
+}
+
+#root {
+  min-height: 100svh;
+}
+
+@theme inline {
+  --font-heading: var(--font-sans);
+  --font-sans: 'Geist Variable', sans-serif;
+  --font-dosis: 'Dosis Variable', sans-serif;
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --color-brand-purple: var(--brand-purple);
+  --color-brand-green: var(--brand-green);
+  --color-brand-magenta: var(--brand-magenta);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans scroll-smooth;
+  }
+}
+
+@layer utilities {
+  .brand-glow {
+    box-shadow: 0 0 0 1px rgba(0, 255, 133, 0.25), 0 8px 40px -8px rgba(0, 255, 133, 0.25);
+  }
+  .brand-bg {
+    background: var(--brand-gradient);
+  }
+}
