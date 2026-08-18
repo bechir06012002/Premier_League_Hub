@@ -159,10 +159,3 @@ npm run dev
 
 The database and authentication live in Supabase; secrets are entered in the Render dashboard rather than committed.
 
-## Demo
-
-<!-- To embed the video: open a new GitHub issue in this repository, drag the MP4 into the comment box,
-     wait for the upload to finish, copy the generated https://github.com/user-attachments/assets/... URL,
-     paste it on the line below, and close the issue without submitting it. -->
-
-*Video walkthrough coming here — sign-up, onboarding, dashboard and the daily email.*
