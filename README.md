@@ -159,3 +159,7 @@ npm run dev
 
 The database and authentication live in Supabase; secrets are entered in the Render dashboard rather than committed.
 
+### Demo
+
+https://github.com/user-attachments/assets/56bfb41a-7100-4e7c-879b-490dfc58a94d
+
